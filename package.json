@@ -1,0 +1,19 @@
+{
+  "name": "screenshots",
+  "version": "1.0.0",
+  "description": "Take screenshots from websites via url",
+  "scripts": {},
+  "keywords": [
+    "api",
+    "server",
+    "screenshot",
+    "web",
+    "puppeteer",
+    "javascript"
+  ],
+  "author": "Diana Martínez <diananerdoficial@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^13.5.2"
+  }
+}
