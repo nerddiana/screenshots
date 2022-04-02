@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
+const chromium = require("chrome-aws-lambda");
 
 const DEFAULT_CONFIG = {
   width: 360,
@@ -12,11 +13,15 @@ const takeScreenshot = async (
   fullPage = true,
   config
 ) => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    executablePath: process.env.EXCECUTABLE_PATH || await chromium.executablePath,
+    headless: true,
+  });
   const page = await browser.newPage();
   await page.setViewport(config);
   await page.goto(url, {
-    waitUntil: ['networkidle2'],
+    waitUntil: ["networkidle2"],
   });
   const img = await page.screenshot({ fullPage });
   await page.close();
