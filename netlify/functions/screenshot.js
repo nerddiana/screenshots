@@ -14,21 +14,25 @@ const takeScreenshot = async (
   config
 ) => {
   const executablePath = process.env.EXECUTABLE_PATH || await chromium.executablePath;
-  console.log("execpath", executablePath, process.env.EXCECUTABLE_PATH);
-  console.log(process.env);
+
   const browser = await puppeteer.launch({
     args: chromium.args,
     executablePath,
     headless: true,
   });
+
   const page = await browser.newPage();
+
   await page.setViewport(config);
   await page.goto(url, {
     waitUntil: ["networkidle2"],
   });
+
   const img = await page.screenshot({ fullPage });
+
   await page.close();
   await browser.close();
+
   return img;
 };
 
