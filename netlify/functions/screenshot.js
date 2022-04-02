@@ -47,7 +47,7 @@ exports.handler = async function (event) {
   const isParam = buildIsParam(params);
   const isFullPage = isParam("full");
 
-  let config = DEFAULT_CONFIG;
+  let config = { ...DEFAULT_CONFIG };
 
   if (isParam("width")) {
     config.width = Number(params.width);
