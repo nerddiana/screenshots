@@ -13,9 +13,12 @@ const takeScreenshot = async (
   fullPage = true,
   config
 ) => {
+  const executablePath = process.env.EXECUTABLE_PATH || await chromium.executablePath;
+  console.log("execpath", executablePath, process.env.EXCECUTABLE_PATH);
+  console.log(process.env);
   const browser = await puppeteer.launch({
     args: chromium.args,
-    executablePath: process.env.EXCECUTABLE_PATH || await chromium.executablePath,
+    executablePath,
     headless: true,
   });
   const page = await browser.newPage();
